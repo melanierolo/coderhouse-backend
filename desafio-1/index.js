@@ -3,7 +3,11 @@ class ProductManager {
     this.products = [];
   }
 
+  // id automático
+  static id = 0;
+
   addProduct(title, description, price, thumbnailImg, code, stock) {
+    ProductManager.id += 1;
     this.products.push({
       title,
       description,
@@ -11,6 +15,7 @@ class ProductManager {
       thumbnailImg,
       code,
       stock,
+      id: ProductManager.id,
     });
   }
 
@@ -33,3 +38,17 @@ products.addProduct(
 );
 
 console.log(products.getProduct());
+
+// Test - segundo producto
+const productsTwo = new ProductManager();
+
+productsTwo.addProduct(
+  'producto prueba 2',
+  'Este es un producto prueba 2',
+  200,
+  'Sin imagen 2',
+  'abc123-2',
+  25
+);
+
+console.log(productsTwo.getProduct());
