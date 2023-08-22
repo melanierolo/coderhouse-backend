@@ -22,6 +22,11 @@ class ProductManager {
   getProduct() {
     return this.products;
   }
+
+  getProductById(id) {
+    const isProductExist = this.products.find((product) => product.id === id);
+    return isProductExist ? console.log('Exists') : console.log('Not found');
+  }
 }
 
 // Probando
@@ -52,3 +57,7 @@ productsTwo.addProduct(
 );
 
 console.log(productsTwo.getProduct());
+
+// Test - ID
+console.log(products.getProductById(3));
+console.log(products.getProductById(1));
