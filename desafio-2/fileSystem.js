@@ -10,7 +10,7 @@ class ProductManager {
   static id = 0;
 
   addProduct = async (title, description, price, thumbnailImg, code, stock) => {
-    // id automático
+    // automatic id
     ProductManager.id += 1;
     // Create an instance of the class inside the method like this:
     let newProduct = {
@@ -28,9 +28,20 @@ class ProductManager {
     await fs.writeFile(this.patch, JSON.stringify(this.products));
   };
 
-  getProduct = async () => {
+  readProducts = async () => {
     let result = await fs.readFile(this.patch, 'utf-8');
-    console.log(JSON.parse(result));
+    return JSON.parse(result);
+  };
+
+  getProducts = async () => {
+    let response = await this.readProducts();
+    return console.log(response);
+  };
+
+  getProductById = async (id) => {
+    let response = await this.readProducts();
+    const isProductExist = response.find((product) => product.id === id);
+    return isProductExist ? console.log('Exists') : console.log('Not found');
   };
 }
 
@@ -61,5 +72,10 @@ products.addProduct(
   8
 );*/
 
-// getProducts
-products.getProduct();
+// TEST - getProducts
+console.log('getProducts');
+products.getProducts();
+
+// TEST - ID
+console.log(products.getProductById(5));
+console.log(products.getProductById(1));
