@@ -49,6 +49,13 @@ class ProductManager {
     await fs.writeFile(this.patch, JSON.stringify(productFilter));
     console.log('product deleted');
   };
+
+  updateProducts = async ({ id, ...product }) => {
+    await this.deleteProductById(id);
+    let productOld = await this.readProducts();
+    let productsEdit = [{ ...product, id }, ...productOld];
+    await fs.writeFile(this.patch, JSON.stringify(productsEdit));
+  };
 }
 
 const products = new ProductManager();
@@ -85,3 +92,14 @@ products.getProducts();
 // TEST - ID
 console.log(products.getProductById(5));
 console.log(products.getProductById(1));
+
+// TEST - updateProducts
+products.updateProducts({
+  title: 'TitleThree',
+  description: 'DescriptionThree',
+  price: 550, // update
+  thumbnailImg: 'ImageUrlThree',
+  code: 'a1b2c3',
+  stock: 8,
+  id: 3,
+});
