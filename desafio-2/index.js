@@ -1,8 +1,9 @@
 // File System
-const fs = require('fs');
+import { fs } from 'fs';
 
-const person = async () => {
-  await fs.promises.writeFile('./Folder/person.txt', 'Hello everyone 🙂');
-};
-
-person();
+class ProductManager {
+  constructor() {
+    this.path = './folder/products.txt';
+  }
+  static = 0;
+}
