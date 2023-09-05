@@ -43,6 +43,12 @@ class ProductManager {
     const isProductExist = response.find((product) => product.id === id);
     return isProductExist ? console.log('Exists') : console.log('Not found');
   };
+  deleteProductById = async (id) => {
+    let response = await this.readProducts();
+    const productFilter = response.filter((product) => product.id !== id);
+    await fs.writeFile(this.patch, JSON.stringify(productFilter));
+    console.log('product deleted');
+  };
 }
 
 const products = new ProductManager();
