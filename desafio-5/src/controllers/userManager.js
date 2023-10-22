@@ -3,7 +3,7 @@ import User from '../models/UserModel.js';
 class UserManager {
   static id = 0;
 
-  async createUser(req, res) {
+  createUser = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -40,8 +40,8 @@ class UserManager {
       const newUser = await User.create({ email, password });
 
       res.json({
-        id: newUser._id,
         email: newUser.email,
+        message: 'User created successfully',
       });
     } catch (error) {
       console.error(error);
@@ -50,7 +50,7 @@ class UserManager {
         message: 'Server Error - user',
       });
     }
-  }
+  };
 }
 
 const users = new UserManager();
