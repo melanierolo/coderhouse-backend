@@ -1,0 +1,34 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Challenge - login",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melanierolo/coderhouse-backend/tree/develop/desafio-5"
+  },
+  "keywords": [
+    "mongoDB",
+    "express",
+    "nodeJS"
+  ],
+  "author": "Melanie Rodas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melanierolo/Final-backend/issues"
+  },
+  "homepage": "https://github.com/melanierolo/coderhouse-backend/tree/develop",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.6.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
+}
