@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const ProductManager = require('../controllers/ProductMananger.controller');
+const ProductManager = require('../controllers/ProductManager.controller');
 const ProductRouter = Router(); // Creating a new router instance
 const product = new ProductManager(); // Creating an instance of ProductManager
 

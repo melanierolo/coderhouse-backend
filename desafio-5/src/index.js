@@ -3,6 +3,7 @@ import 'dotenv/config';
 import { connectDB } from './connect.js';
 import { PORT } from './config.js';
 import UserRouter from './routes/user.js';
+import ProductRouter from './routes/product.js';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', UserRouter);
+app.use('/api/products', ProductRouter);
 /*app.use('/api/cart', CartRouter);*/
 
 app.listen(PORT, () => {
