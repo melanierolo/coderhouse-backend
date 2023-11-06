@@ -1,22 +1,45 @@
 import express from 'express';
-
+import path from 'path';
+import exphbs from 'express-handlebars';
 import 'dotenv/config';
 import morgan from 'morgan';
 import { connectDB } from './connect.js';
 import { PORT } from './config.js';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 // Generate random : node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 import { secretDB } from './config.js';
-import MongoStore from 'connect-mongo';
 import UserRouter from './routes/user.js';
 import ProductRouter from './routes/product.js';
 
+// Initializations
 const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Middleware to parse JSON and urlencoded request bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan('dev'));
+
+// Settings - the location of the "views" folder
+app.set('views', join(__dirname, 'views'));
+console.log(join(__dirname, 'views'));
+
+// Set up the handlebars view engine
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  layoutsDir: join(app.get('views'), 'layouts'),
+  partialsDir: join(app.get('views'), 'partials'),
+  extname: '.hbs',
+});
+app.engine('.hbs', hbs.engine);
+app.set('view engine', '.hbs');
+
+// Route - handlebars
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 /* -------------- SESSION SETUP ----------------*/
 /*app.use(
@@ -42,7 +65,7 @@ app.listen(PORT, () => {
   console.log(`Servidor Express Puerto ${PORT}`);
 });
 
-// Static files ->  the location of the "publix" folder
+// Static files ->  the location of the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Call the function to connect to the database
