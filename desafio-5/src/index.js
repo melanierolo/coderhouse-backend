@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 /* -------------- SESSION SETUP ----------------*/
-app.use(
+/*app.use(
   session({
     secret: secretDB,
     resave: false, //don't save session if unmodified
@@ -32,7 +32,7 @@ app.use(
       ttl: 10000,
     }),
   })
-);
+);*/
 
 app.use('/api/users', UserRouter);
 app.use('/api/products', ProductRouter);
@@ -41,6 +41,9 @@ app.use('/api/products', ProductRouter);
 app.listen(PORT, () => {
   console.log(`Servidor Express Puerto ${PORT}`);
 });
+
+// Static files ->  the location of the "publix" folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Call the function to connect to the database
 connectDB();
