@@ -36,8 +36,10 @@ class ProductManager {
    */
   getProducts = async (limit = 10, page = 1, sort, query) => {
     try {
-      // Construct the filter based on the query parameter (e.g., category or availability)
+      // Convert page to a number
+      page = parseInt(page);
 
+      // Construct the filter based on the query parameter (e.g., category or availability)
       let filter = {};
       if (query) {
         if (query === 'in stock' || query === 'out of stock') {
