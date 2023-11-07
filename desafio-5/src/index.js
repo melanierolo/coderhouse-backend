@@ -7,6 +7,7 @@ import { connectDB } from './connect.js';
 import { PORT } from './config.js';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import routes from './routes/index.js';
 // Generate random : node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 import { secretDB } from './config.js';
 import UserRouter from './routes/user.js';
@@ -36,11 +37,6 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-// Route - handlebars
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
 /* -------------- SESSION SETUP ----------------*/
 /*app.use(
   session({
@@ -60,6 +56,9 @@ app.get('/', (req, res) => {
 app.use('/api/users', UserRouter);
 app.use('/api/products', ProductRouter);
 /*app.use('/api/cart', CartRouter);*/
+
+//Routes
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`Servidor Express Puerto ${PORT}`);
