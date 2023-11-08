@@ -1,3 +1,5 @@
+// All render views
+
 const renderIndex = (req, res) => {
   res.render('index');
 };
