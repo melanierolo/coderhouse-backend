@@ -4,12 +4,20 @@ class UserManager {
   static id = 0;
 
   createUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { firstName, lastName, age, email, password, confirmPassword } =
+      req.body;
 
     if (!email || !password) {
       return res.json({
         statusCode: 400,
         message: 'Missing email or password',
+      });
+    }
+
+    if (!confirmPassword) {
+      return res.json({
+        statusCode: 400,
+        message: 'Please confirm your password.',
       });
     }
 
@@ -27,6 +35,14 @@ class UserManager {
       });
     }
 
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        statusCode: 400,
+        message:
+          'Passwords do not match. Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.',
+      });
+    }
+
     try {
       const userExists = await User.exists({ email });
 
@@ -37,7 +53,13 @@ class UserManager {
         });
       }
 
-      const newUser = await User.create({ email, password });
+      const newUser = await User.create({
+        firstName: firstName || '',
+        lastName: lastName || '',
+        age: age || '',
+        email,
+        password,
+      });
 
       res.json({
         email: newUser.email,
