@@ -9,4 +9,8 @@ const renderAllProducts = async (req, res) => {
   res.render('products/all-products');
 };
 
-export { renderIndex, renderQuienesSomos, renderAllProducts };
+const renderRegister = async (req, res) => {
+  res.render('session/register');
+};
+
+export { renderIndex, renderQuienesSomos, renderAllProducts, renderRegister };
