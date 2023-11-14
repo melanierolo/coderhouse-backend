@@ -15,4 +15,14 @@ const renderRegister = async (req, res) => {
   res.render('session/register');
 };
 
-export { renderIndex, renderQuienesSomos, renderAllProducts, renderRegister };
+const renderLogin = async (req, res) => {
+  res.render('session/login');
+};
+
+export {
+  renderIndex,
+  renderQuienesSomos,
+  renderAllProducts,
+  renderRegister,
+  renderLogin,
+};

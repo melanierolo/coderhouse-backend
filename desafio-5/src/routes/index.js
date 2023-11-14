@@ -4,6 +4,7 @@ import {
   renderQuienesSomos,
   renderAllProducts,
   renderRegister,
+  renderLogin,
 } from '../controllers/index.js';
 import { apiBaseUrl } from '../config.js';
 import ProductManager from '../controllers/ProductManager.js';
@@ -18,5 +19,7 @@ router.get('/quienesSomos', renderQuienesSomos);
 router.get('/productos', renderAllProducts);
 
 router.get('/registro', renderRegister);
+
+router.get('/iniciarSesion', renderLogin);
 
 export default router;
