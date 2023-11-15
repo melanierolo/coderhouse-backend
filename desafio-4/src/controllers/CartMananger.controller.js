@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const ProductManager = require('./ProductManager.js');
+const ProductManager = require('../controllers/ProductManager.controller');
 
 const productAll = new ProductManager();
 

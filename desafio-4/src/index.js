@@ -4,7 +4,7 @@ const CartRouter = require('./routes/carts.js');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const utils = require('./utils.js');
-const ProductManager = require('./controllers/ProductManager.js');
+const ProductManager = require('./controllers/ProductManager.controller');
 const { Server } = require('socket.io'); // New
 const viewsRouter = require('./router/views.routes.js');
 
