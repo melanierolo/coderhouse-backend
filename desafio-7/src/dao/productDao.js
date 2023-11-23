@@ -1,4 +1,5 @@
 import ProductModel from '../models/productModel.js';
+import { Types } from 'mongoose';
 
 class ProductDao {
   getProducts = async (page, filter, sort, limit) => {
@@ -43,6 +44,23 @@ class ProductDao {
       };
     } catch (error) {
       console.error(error);
+      return null;
+    }
+  };
+  getProductById = async (id) => {
+    console.log('id', id);
+    try {
+      // Validation of id
+      if (!Types.ObjectId.isValid(id)) {
+        return {
+          statusCode: 404,
+          message: 'Not found',
+        };
+      }
+
+      const product = await ProductModel.findById(id);
+      return product;
+    } catch (error) {
       return null;
     }
   };

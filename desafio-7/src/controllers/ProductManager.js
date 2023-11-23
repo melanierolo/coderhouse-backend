@@ -59,14 +59,15 @@ class ProductManager {
 
   getProductById = async (id) => {
     try {
-      const product = await Product.findOne({ id });
+      const product = await ProductDao.getProductById(id);
+
       if (product) {
-        console.log('Exists:', product);
+        return product;
       } else {
-        console.log('Not found');
+        return 'Not found';
       }
     } catch (error) {
-      console.error(error);
+      return error;
     }
   };
 
